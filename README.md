@@ -38,7 +38,7 @@ These features collectively provide a comprehensive and user-friendly interface 
 
 ### XRPMM Wallet
 
-We've built a companion wallet to be able to interact with the platform. The private repo can be found here: https://github.com/SixtantIO/xrpmm-wallet
+We've built a companion wallet to be able to interact with the platform. The private repo can be found here: [https://github.com/SixtantIO/xrpmm-wallet-public](https://github.com/SixtantIO/xrpmm-wallet-public)
 
 ### Prerequisites
 - Python 3.6 or higher
