@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Pay Back Borrowed Assets</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="asset_type">Select Asset to Pay Back</label>
+                    {{ form.asset_type(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount to Pay Back</label>
+                    {{ form.amount(class_="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-outline-danger payback-button">Pay Back</button>
+            </form>
+        </div> <!-- Closing tag for the first column -->
+        <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Borrowed Assets</h2>
+            <table class="table table-striped custom-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Asset</th>
+                        <th scope="col">Borrowed</th>
+                        <th scope="col">Interest</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asset, details in assets_details %}
+                    <tr>
+                        <td>{{ asset }}</td>
+                        <td>{{ "{:,.2f}".format(details['borrowed']) }}</td>
+                        <td>{{ "{:,.2f}".format(details['interest']) }}</td>
+                        <td>{{ "{:,.2f}".format(details['total']) }}</td>
+                        <td>{{ "{:,.2f}".format(details['available']) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> <!-- Closing tag for the second column -->
+    </div> <!-- Closing tag for the row -->
+</div>
+{% endblock %}

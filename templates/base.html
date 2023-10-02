@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Bootstrap CSS -->
+    <link rel="icon" href="{{ mm_url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ mm_url_for('static', filename='css/style.css') }}">
+    <title>XRPL Money Market</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(90deg, #1c242c 0%, #5f6974 100%);">
+      <a class="navbar-brand text-white" href="{{ mm_url_for('index') }}">
+        <div style="display: flex; align-items: center;">
+          <img src="{{ mm_url_for('static', filename='images/logo.png') }}" alt="Logo" style="height: 30px; padding-right: 5px;">
+          XRPL Money Market
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item {% if request.endpoint == 'markets' %}active{% endif %}">
+            <a class="nav-link text-white" href="{{ mm_url_for('index') }}">Markets</a>
+          </li>
+          <li class="nav-item {% if request.endpoint == 'deposit' %}active{% endif %}">
+            <a class="nav-link text-white" href="{{ mm_url_for('deposit', asset='EUR') }}">Deposit</a>
+          </li>
+          <li class="nav-item {% if request.endpoint == 'swap' %}active{% endif %}">
+            <a class="nav-link text-white" href="{{ mm_url_for('swap') }}">Swap</a>
+        </li>      
+        </ul>
+        <div class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+            <a class="btn btn-outline-info" href="{{ mm_url_for('dashboard', user_id=current_user.id) }}">My Dashboard</a>
+          {% else %}
+            <a class="btn btn-outline-info" href="{{ mm_url_for('login') }}">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    
+
+    <div class="container content-container">
+      {% block content %}{% endblock %}
+    </div>
+
+
+    <footer class="footer fixed-bottom text-center py-2" style="background: linear-gradient(90deg, #749ae2 0%, #324361 100%); color: #ffffff;">
+      <!-- Footer content -->
+      <p>XRPL Summer Hackathon 2023</p>
+    </footer>
+
+    <!-- Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

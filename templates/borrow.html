@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Borrow Assets</h2>
+            <div class="">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form method="post" class="rounded-form">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <label for="asset_type">Asset Type</label>
+                        {{ form.asset_type(class_="form-control rounded-input") }}
+                        {% if form.asset_type.errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.asset_type.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        {{ form.amount(class_="form-control rounded-input") }}
+                        {% if form.amount.errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.amount.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary borrow-button">Borrow</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Max Borrowable</h2>
+            <div class="">
+                <!-- Table displaying available assets for borrowing -->
+                <table class="table table-striped custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Current Balance</th>
+                            <th scope="col">Borrowed</th>
+                            <th scope="col">Max Borrowable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asset, details in assets_details %}
+                        <tr>
+                            <td>{{ asset }}</td>
+                            <td>{{ "{:,.2f}".format(details.balance) }}</td>
+                            <td>{{ "{:,.2f}".format(details.borrowed) }}</td>
+                            <td>{{ "{:,.2f}".format(details.max_borrowable) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

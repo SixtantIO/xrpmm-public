@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Deposit{% endblock %}
+
+{% block content %}
+<audio id="coinSound" src="{{ mm_url_for('static', filename='audio/coin.wav') }}" preload="auto"></audio>
+<div id="flash-messages" style="position: fixed; top: 100px; left: 10px; z-index: 10000 !important;"></div>
+<div class="container mt-5">
+    <div class="jumbotron text-center py-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff;">
+        <h1 class="mb-3" style="font-size: 2.5rem;">Deposit</h1>
+        <p style="font-size: 1.15rem;">Deposit Address: r9UrR1XaxpF3ZZUvvRChFeNa2RpbiXkrxs</p>
+        <p style="font-size: 1.15rem;">You can deposit the following assets: XRP, USD, EUR, MXN</p>
+        <p style="font-size: 1.15rem;">Just send the assets from your wallet, and go to Dashboard to see the deposit reflected.</p>
+        <p id="message" style="font-size: 1.15rem;"></p>
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+<script>
+    var protocol = location.protocol;
+    var ws_url = protocol + '//' + document.domain + (location.port ? ':' + location.port : '');
+    var socket = io.connect(ws_url, {path: "/mm/socket.io"});
+
+    socket.on('deposit', function(data) {
+    // Displaying a message about the deposit
+    var depositMessage = "Deposited " + data.amount + " " + data.asset;
+    var depositMessageElement = document.createElement('div');
+    depositMessageElement.classList.add('alert', 'alert-success');
+    depositMessageElement.textContent = depositMessage;
+
+    var flashMessagesContainer = document.getElementById('flash-messages');
+    flashMessagesContainer.appendChild(depositMessageElement);
+
+    // Play the coin sound
+    document.getElementById('coinSound').play();
+
+    // Set the timeout function within the scope of the event listener
+    setTimeout(function() {
+        flashMessagesContainer.removeChild(depositMessageElement);
+    }, 5000);  // Removes the message after 5 seconds
+});
+</script>
+{% endblock %}
+
+

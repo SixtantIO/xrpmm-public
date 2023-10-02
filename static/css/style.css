@@ -1,0 +1,44 @@
+.borrow-button {
+    background-color: #006400; /* This is a dark green color */
+    color: white; /* This is for the text color */
+    transition: background-color 0.3s ease; /* This is for a smooth transition */
+}
+
+.borrow-button:hover {
+    background-color: #0d840d; /* This is a brighter green color */
+    color: white; /* This is for the text color */
+}
+
+.transaction-highlight {
+    font-size: 1.5em; /* Makes the text bigger */
+    color: green; /* Sets the text color to green */
+    background-color: #e0f9e0; /* Sets a light green background */
+    border: 2px solid green; /* Adds a green border around the box */
+    padding: 10px; /* Adds some space around the text inside the box */
+    border-radius: 5px; /* Rounds the corners of the box */
+}
+
+.content-container {
+    padding-bottom: 60px !important; 
+    margin-top: 70px; 
+  }
+
+  .custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #f5f9fd; /* Light background color */
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border-right: none; /* Remove vertical gridlines */
+    border-left: none; /* Remove vertical gridlines */
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group .btn-group-toggle {
+    margin-top: 0.5rem;
+}

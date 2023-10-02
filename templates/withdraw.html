@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}<!-- Information Textbox -->
+  <div class="container my-4">
+    <div class="row bg-light border border-secondary rounded p-3">
+      <div class="col">
+          <h4>Supplied: {{ "{:,.0f}".format(total_supplied_usd|float) }} USD</h4>
+      </div>
+      <div class="col">
+          <h4>Borrowed: {{ "{:,.0f}".format(total_borrowed_usd|float) }} USD</h4>
+      </div>
+      <div class="col-5">
+          <h4>Available for Withdrawal: {{ "{:,.0f}".format(available_for_withdrawal|float) }} USD</h4>
+      </div>
+  </div>
+  </div>
+  <div class="alert alert-info mt-0 mb-0" role="alert">
+    Please note that for every amount borrowed, twice that amount will be locked and not available for withdrawals. For instance, you borrowed {{ "{:,.0f}".format(total_borrowed_usd|float) }} USD so there are {{ "{:,.0f}".format(total_borrowed_usd*2|float) }} USD locked.
+  </div>
+    <div class="row justify-content-center mt-0">
+      <div class="col-12 col-md-6">
+        <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Withdraw Asset</h2>
+        <div class="">
+            <!-- Display flash messages -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert alert-info flash-messages">
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <!-- Start the form block -->
+            {% from "_formhelpers.html" import render_field %}
+            <form method="post" class="rounded-form">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                {{ render_field(form.amount, class_="form-control rounded-input") }}
+              </div>
+              <div class="form-group">
+                {{ render_field(form.asset_type, class_="form-control rounded-input") }}
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+            </form>
+            <!-- End the form block -->
+          </div>
+        </div>
+
+      <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Max withdrawal</h2>
+          <div class="">
+             <!-- Table displaying available assets for withdrawal -->
+            <table class="table table-striped custom-table">
+              <thead>
+                <tr>
+                  <th scope="col">Asset</th>
+                  <th scope="col">Available</th>
+                  <th scope="col">Locked Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for asset, amount in available_assets.items() %}
+                <tr>
+                  <td>{{ asset }}</td>
+                  <td>{{ "{:,.2f}".format(amount) }}</td>
+                  <td>{{ "{:,.2f}".format(locked_assets[asset]) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+      
+
+{% endblock %}

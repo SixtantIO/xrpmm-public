@@ -1,0 +1,144 @@
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.bitso.com:443
+urllib3.connectionpool - DEBUG - https://api.bitso.com:443 "GET /v3/ticker/?book=usd_mxn HTTP/1.1" 200 None
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.bitstamp.net:443
+urllib3.connectionpool - DEBUG - https://www.bitstamp.net:443 "GET /api/v2/ticker/xrpusd/ HTTP/1.1" 200 169
+urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): www.bitstamp.net:443
+urllib3.connectionpool - DEBUG - https://www.bitstamp.net:443 "GET /api/v2/ticker/eurusd/ HTTP/1.1" 200 161
+tzlocal - DEBUG - /etc/localtime found
+tzlocal - DEBUG - 1 found:
+ {'/etc/localtime is a symlink to': 'Europe/Paris'}
+apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+apscheduler.scheduler - INFO - Added job "save_interest_rates" to job store "default"
+apscheduler.scheduler - INFO - Scheduler started
+apscheduler.scheduler - DEBUG - Looking for jobs to run
+apscheduler.scheduler - DEBUG - Next wakeup is due at 2023-08-19 23:16:43.380445+02:00 (in 59.997585 seconds)
+engineio.server - INFO - Server initialized for threading.
+werkzeug - WARNING - WebSocket transport not available. Install simple-websocket for improved performance.
+werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5005
+werkzeug - INFO - [33mPress CTRL+C to quit[0m
+websocket - INFO - Websocket connected
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:44] "GET /mm/swap HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:44] "[36mGET /mm/static/css/style.css HTTP/1.1[0m" 304 -
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:44] "[36mGET /mm/static/favicon.ico HTTP/1.1[0m" 304 -
+root - DEBUG - Calculated XRP cost: 86.95652173913044
+root - DEBUG - Buy operation executed
+asyncio - DEBUG - Using selector: KqueueSelector
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x107d433d0>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x119207b60> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1193a7110>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:50 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'365'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x107494450>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x119207d10> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1193a6e10>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:51 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'1055'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1193bfd50>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1193d0680> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10740c650>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:51 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'802'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11941d5d0>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x119207d10> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11941d510>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:52 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'365'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11941f110>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1193d0830> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11941f050>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:52 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'866'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+httpx - DEBUG - load_verify_locations cafile='/Users/josu/Documents/XRPL/dorahacks/xrpmm-dorahacks/myenv/lib/python3.11/site-packages/certifi/cacert.pem'
+httpcore.connection - DEBUG - connect_tcp.started host='s.altnet.rippletest.net' port=51234 local_address=None timeout=10.0 socket_options=None
+httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11942a210>
+httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1193d0ef0> server_hostname='s.altnet.rippletest.net' timeout=10.0
+httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x11942a150>
+httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_headers.complete
+httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - send_request_body.complete
+httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Sat, 19 Aug 2023 21:15:53 +0000'), (b'Connection', b'Keep-Alive'), (b'Content-Length', b'1390'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Server', b'ripple-json-rpc/rippled-1.11.0-rc3')])
+httpx - INFO - HTTP Request: POST https://s.altnet.rippletest.net:51234 "HTTP/1.1 200 OK"
+httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+httpcore.http11 - DEBUG - receive_response_body.complete
+httpcore.http11 - DEBUG - response_closed.started
+httpcore.http11 - DEBUG - response_closed.complete
+httpcore.connection - DEBUG - close.started
+httpcore.connection - DEBUG - close.complete
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:53] "[32mPOST /mm/swap HTTP/1.1[0m" 302 -
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:53] "GET /mm/swap HTTP/1.1" 200 -
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:53] "[36mGET /mm/static/css/style.css HTTP/1.1[0m" 304 -
+werkzeug - INFO - 127.0.0.1 - - [19/Aug/2023 23:15:53] "[36mGET /mm/static/favicon.ico HTTP/1.1[0m" 304 -

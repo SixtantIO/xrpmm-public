@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Registration{% endblock %}
+
+{% block content %}
+    <h1>Confirm Registration</h1>
+    <p>Please make a transaction with destination tag: {{ unique_num }}</p>
+    <p id="message">After the transaction is confirmed, your account will be created.</p>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener('DOMContentLoaded', () => {
+            var socket = io.connect('http://localhost:5000');
+            socket.on('confirmation', data => {
+                var messageElement = document.getElementById('message');
+                messageElement.textContent = data.message;
+            });
+        });
+    </script>
+{% endblock %}

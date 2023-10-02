@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div id="flash-messages"></div>
+    <div class="container mt-5" id="main-container">
+        {% if unique_num %}
+            <p class="mt-3 transaction-highlight " id="transaction-instruction">To finish the registration, please send a transaction to the address <b>r9UrR1XaxpF3ZZUvvRChFeNa2RpbiXkrxs</b> with the destination tag <b>{{ unique_num }}</b> to confirm your registration.
+            Please make sure you are using the <a href="https://xrp.dorahacks.sixtant.io/wallet/" target="_blank">custom made wallet.</a></p>
+        {% endif %}
+        <div class="row justify-content-center"  id="content-container">
+            <div class="col-12 col-md-6">
+                <h1 class="mb-3">Register</h1>
+                <form method="post" id="register-form">
+                    <div class="form-group mb-3">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="wallet_address">Wallet Address</label>
+                        <input type="text" id="wallet_address" name="wallet_address" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <div class="alert alert-warning mt-3" role="alert">
+                    Please use this <a href="https://xrp.dorahacks.sixtant.io/wallet/">custom made wallet</a> to sign up. This will allow you to properly interact with the XRP Money Market.
+                </div>
+                <p class="mt-3">Already have an account? <a href="{{ mm_url_for('login') }}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+    document.getElementById('register-form').addEventListener('submit', function() {
+        var transactionInstruction = document.getElementById('transaction-instruction');
+        if (transactionInstruction) { // Check that the element exists
+            // Highlight the instruction
+            transactionInstruction.style.backgroundColor = 'yellow'; // or any other highlighting style
+        }
+    });
+    var protocol = location.protocol;
+    var ws_url = protocol + '//' + document.domain + (location.port ? ':' + location.port : '');
+    var socket = io.connect(ws_url, {path: "/mm/socket.io"});
+    socket.on('confirmation', function(data) {
+        // If there is a flash message, show it
+        if (data.flash_message) {
+            var flashMessageElement = document.createElement('div');
+            flashMessageElement.classList.add('alert', 'alert-info');
+            flashMessageElement.textContent = data.flash_message;
+            var flashMessagesContainer = document.getElementById('flash-messages');
+            flashMessagesContainer.appendChild(flashMessageElement);
+        }
+
+        // Redirect to the login page if the redirect property is present
+        if (data.redirect) {
+            setTimeout(function() {
+                window.location.href = data.redirect;
+            }, data.delay || 0); // Redirect after the delay, default to immediate redirect if no delay is provided
+        }
+    });
+    socket.on('connect', function() {
+        console.log('Connected to server.');
+    });
+
+    socket.on('disconnect', function() {
+        console.log('Disconnected from server.');
+    });
+    </script>
+{% endblock %}

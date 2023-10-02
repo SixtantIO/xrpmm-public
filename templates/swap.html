@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Swap{% endblock %}
+
+{% block content %}
+<!-- Information Textbox -->
+<div class="container mt-3">
+    <div class="alert alert-info" role="alert">
+        This is a demo to show an on-chain swap directly in the XRP DEX. We are currently using TXT tokens as they are the only tokens available on the Testnet. Once the platform is deployed on Mainnet, the idea is to swap into any stablecoin or asset on the DEX. See on-chain DEX transaction <a href="https://testnet.xrpl.org/accounts/r9UrR1XaxpF3ZZUvvRChFeNa2RpbiXkrxs" target="_blank">here</a>.
+    </div>
+</div>
+<input type="hidden" id="buyRate" value="{{ buy_rate }}">
+<input type="hidden" id="sellRate" value="{{ sell_rate }}">
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+
+        <!-- Display flashed messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="col-12">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="col-12 col-md-6">
+            <!-- Swap Assets Heading -->
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Swap Assets</h2>
+            
+            <!-- Swap Form -->
+            <form action="{{ mm_url_for('swap') }}" method="post" class="rounded-form" autocomplete="off">
+                {{ form.hidden_tag() }}
+                
+                <!-- Side Toggle -->
+                <div class="form-group text-center">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        {% for subfield in form.side %}
+                        <label class="btn btn-secondary {% if subfield.checked %} active {% endif %}">
+                            <input type="radio" autocomplete="off" id="{{ subfield.id }}" name="{{ subfield.name }}" value="{{ subfield.data }}" {% if subfield.checked %} checked {% endif %} onchange="updateEstimation()">{{ subfield.label.text }}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Amount Input -->
+                <div class="form-group">
+                    {{ form.amount.label }}
+                    {{ form.amount(class='form-control', type='number', step='1') }}
+                </div>
+                <p><span id="xrpLabel">Estimated cost in XRP</span>: <span id="xrpDisplay">0</span></p>
+                
+                <!-- Execute Swap Button -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary" id="swapBtn">Execute Swap</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Assets Balance Table -->
+        <div class="col-12 col-md-6">
+            <h2 class="my-4" style="background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; padding: 10px; border-radius: 5px;">Assets Balance</h2>
+            <div class="">
+                <!-- Table displaying asset balances -->
+                <table class="table table-striped custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Current Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Assuming tst_balance and xrp_balance are passed as floats -->
+                        <tr>
+                            <td>TST</td>
+                            <td>{{ "{:,.2f}".format(tst_balance) }}</td>
+                        </tr>
+                        <tr>
+                            <td>XRP</td>
+                            <td>{{ "{:,.2f}".format(xrp_balance) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+document.querySelector('form').addEventListener('submit', function(e) {
+    var swapBtn = document.getElementById('swapBtn');
+    swapBtn.disabled = true;  // Disable the button
+    swapBtn.innerHTML = "Executing...";  // Change the button label
+    swapBtn.classList.add('btn-secondary');  // Change the button color to gray
+    swapBtn.classList.remove('btn-primary');  // Remove the primary color
+});
+
+function updateEstimation() {
+    const tstInput = document.getElementById('amount');
+    const xrpDisplay = document.getElementById('xrpDisplay');
+    const xrpLabel = document.getElementById('xrpLabel');
+
+    const buyRateInput = document.getElementById('buyRate');
+    const sellRateInput = document.getElementById('sellRate');
+
+    const buyRate = parseFloat(buyRateInput.value);
+    const sellRate = parseFloat(sellRateInput.value);
+    let tstAmount = parseFloat(tstInput.value) || 0;
+    let xrpAmount = 0;
+
+    let side = document.querySelector('input[name="side"]:checked').value;
+
+    if (side === 'buy') {
+        xrpAmount = tstAmount / buyRate;
+        xrpLabel.textContent = "Estimated cost in XRP";
+    } else {
+        xrpAmount = tstAmount * sellRate;
+        xrpLabel.textContent = "Estimated XRP to receive";
+    }
+
+    xrpDisplay.textContent = Math.ceil(xrpAmount).toFixed(0);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const tstInput = document.getElementById('amount');
+    tstInput.addEventListener('input', updateEstimation);
+    updateEstimation(); // Call the function to set the initial value
+});
+
+</script>
+
+    
+{% endblock %}
